@@ -7,8 +7,8 @@ class PixabayApi {
   final String baseUrl = 'https://pixabay.com/api/';
 
   Future<List<Hit>> fetchImages() async {
-    final response = await http
-        .get(Uri.parse('$baseUrl?key=$apiKey&q=flowers&image_type=photo'));
+    final response = await http.get(
+        Uri.parse('$baseUrl?key=$apiKey&q=purple+flowers&image_type=photo'));
     if (response.statusCode == 200) {
       ImageResponseModel imageResponse =
           ImageResponseModel.fromJson(jsonDecode(response.body));
