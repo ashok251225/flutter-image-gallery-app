@@ -46,7 +46,7 @@ class GalleryScreenState extends State<GalleryScreen> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           }
-          return const FlowerLoadingIndicator();
+          return const Center(child: FlowerLoadingIndicator());
         },
       ),
     );
