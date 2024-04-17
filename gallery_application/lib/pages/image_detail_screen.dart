@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_application/image_model.dart';
+
+import 'package:gallery_application/models/image_response_model.dart';
 
 class ImageDetailScreen extends StatelessWidget {
-  final ImageModel image;
+  final Hit image;
 
-  ImageDetailScreen({required this.image});
+  const ImageDetailScreen({required this.image, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class ImageDetailScreen extends StatelessWidget {
         onTap: () => Navigator.pop(context),
         child: Center(
           child: Hero(
-            tag: image.url,
-            child: Image.network(image.url),
+            tag: image.previewUrl,
+            child: Image.network(image.largeImageUrl),
           ),
         ),
       ),

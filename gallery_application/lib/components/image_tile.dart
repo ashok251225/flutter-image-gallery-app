@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_application/image_detail_screen.dart';
-import 'package:gallery_application/image_model.dart';
+import 'package:gallery_application/pages/image_detail_screen.dart';
+
+import 'package:gallery_application/models/image_response_model.dart';
 
 class ImageTile extends StatelessWidget {
-  final ImageModel image;
+  final Hit image;
 
-  ImageTile({required this.image, super.key});
+  const ImageTile({required this.image, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class ImageTile extends StatelessWidget {
           title: Text('Likes: ${image.likes}, Views: ${image.views}'),
         ),
         child: Hero(
-          tag: image.url,
-          child: Image.network(image.url, fit: BoxFit.cover),
+          tag: image.previewUrl,
+          child: Image.network(image.previewUrl, fit: BoxFit.cover),
         ),
       ),
     );

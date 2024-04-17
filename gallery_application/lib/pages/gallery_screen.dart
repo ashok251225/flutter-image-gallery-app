@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_application/image_model.dart';
-import 'package:gallery_application/image_tile.dart';
-import 'package:gallery_application/pixabay_api.dart';
+import 'package:gallery_application/components/custom_loading_indicator.dart';
+
+import 'package:gallery_application/models/image_response_model.dart';
+import 'package:gallery_application/components/image_tile.dart';
+import 'package:gallery_application/api/pixabay_api.dart';
 
 class GalleryScreen extends StatefulWidget {
+  const GalleryScreen({super.key});
   @override
-  _GalleryScreenState createState() => _GalleryScreenState();
+  GalleryScreenState createState() => GalleryScreenState();
 }
 
-class _GalleryScreenState extends State<GalleryScreen> {
-  late Future<List<ImageModel>> images;
+class GalleryScreenState extends State<GalleryScreen> {
+  late Future<List<Hit>> images;
 
   @override
   void initState() {
@@ -23,7 +26,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
       appBar: AppBar(
         title: const Text('Image Gallery'),
       ),
-      body: FutureBuilder<List<ImageModel>>(
+      body: FutureBuilder<List<Hit>>(
         future: images,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -43,7 +46,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           }
-          return const CircularProgressIndicator();
+          return const FlowerLoadingIndicator();
         },
       ),
     );
